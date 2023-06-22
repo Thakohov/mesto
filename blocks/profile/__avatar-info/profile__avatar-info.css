@@ -1,0 +1,4 @@
+.profile__avatar-info {
+  display: flex;
+  column-gap: 30px;
+}
