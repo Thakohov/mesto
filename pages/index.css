@@ -20,3 +20,5 @@
 @import url(../blocks/card/__caption-heart/card__caption-heart.css);
 @import url(../blocks/card/caption/card__caption.css);
 @import url(../blocks/card/__heart/card__heart.css);
+@import url(../blocks/footer/footer.css);
+@import url(../blocks/footer/__copyright/footer__copyright.css);
