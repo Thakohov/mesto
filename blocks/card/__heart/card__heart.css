@@ -1,4 +1,10 @@
 .card__heart {
   width: 22px;
   height: 19px;
+  transition: 1s;
+}
+
+.card__heart:hover {
+  transition: 1s;
+  opacity: 0.5;
 }

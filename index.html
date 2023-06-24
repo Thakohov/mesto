@@ -19,7 +19,7 @@
             class="profile__avatar"
           />
           <div class="profile__info">
-            <h1 class="profile__title">Жак-Ив Кусто</h1>
+            <h1 class="profile__author">Жак-Ив Кусто</h1>
             <button class="profile__edit">
               <img
               src="images/edit-button.png"
@@ -47,35 +47,35 @@
           />
           <div class="card__caption-heart">
             <h3 class="card__caption">Карачаевск</h3>
-            <img src="images/heart.png" alt="Лайк" class="card__heart" />
+            <img src="images/heart.svg" alt="Лайк" class="card__heart card__heart_type_active" />
           </div>
         </div>
         <div class="card">
           <img src="images/Эльбрус.png" alt="Эльбрус" class="card__image" />
           <div class="card__caption-heart">
             <h3 class="card__caption">Эльбрус</h3>
-            <img src="images/heart.png" alt="Лайк" class="card__heart" />
+            <img src="images/heart.svg" alt="Лайк" class="card__heart" />
           </div>
         </div>
         <div class="card">
           <img src="images/Домбай.png" alt="Домбай" class="card__image" />
           <div class="card__caption-heart">
             <h3 class="card__caption">Домбай</h3>
-            <img src="images/heart.png" alt="Лайк" class="card__heart" />
+            <img src="images/heart.svg" alt="Лайк" class="card__heart" />
           </div>
         </div>
         <div class="card">
           <img src="images/Эльбрус.png" alt="Эльбрус" class="card__image" />
           <div class="card__caption-heart">
             <h3 class="card__caption">Эльбрус</h3>
-            <img src="images/heart.png" alt="Лайк" class="card__heart" />
+            <img src="images/heart.svg" alt="Лайк" class="card__heart" />
           </div>
         </div>
         <div class="card">
           <img src="images/Домбай.png" alt="Домбай" class="card__image" />
           <div class="card__caption-heart">
             <h3 class="card__caption">Домбай</h3>
-            <img src="images/heart.png" alt="Лайк" class="card__heart" />
+            <img src="images/heart.svg" alt="Лайк" class="card__heart" />
           </div>
         </div>
         <div class="card">
@@ -86,7 +86,7 @@
           />
           <div class="card__caption-heart">
             <h3 class="card__caption">Карачаево-Черкесия</h3>
-            <img src="images/heart.png" alt="Лайк" class="card__heart" />
+            <img src="images/heart.svg" alt="Лайк" class="card__heart card__heart_type_active" />
           </div>
         </div>
       </section>
@@ -94,6 +94,17 @@
     <footer class="footer">
       <p class="footer__copyright" lang="en">&#169; 2023 Mesto Russia</p>
     </footer>
+    <div class="popup">
+      <div class="popup__container">
+        <button class="popup__close"></button>
+        <h2 class="popup__title">Редактировать профиль</h2>
+        <form action="" method="get"  class="popup__texts">
+            <input type="text" name="name" id="name" class="popup__text" value="Жак-Ив Кусто">
+            <input type="text" name="description" id="name" class="popup__text" value="Исследователь океана">
+        </form>
+        <button class="popup__save">Сохранить</button>
+      </div>
+    </div>
     <script></script>
   </body>
 </html>
