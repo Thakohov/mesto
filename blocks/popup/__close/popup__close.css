@@ -12,6 +12,7 @@
   background-color: transparent;
   padding: 0;
   transition: 1s;
+  outline: none;
 }
 
 .popup__close:hover {

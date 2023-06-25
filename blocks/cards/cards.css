@@ -7,7 +7,6 @@
   column-gap: 17px;
 }
 
-
 @media screen and (max-width: 767px) {
   .cards {
     width: 282px;

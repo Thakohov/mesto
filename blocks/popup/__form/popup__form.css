@@ -1,16 +1,16 @@
-.popup__texts {
+.popup__form {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   row-gap: 30px;
   width: 358px;
-  margin: 0 0 48px;
+  margin: 0;
   padding: 0;
   border: none;
 }
 
 @media screen and (max-width: 767px) {
-  .popup__texts {
+  .popup__form {
     width: 238px;
   }
 }

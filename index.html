@@ -19,24 +19,26 @@
             class="profile__avatar"
           />
           <div class="profile__info">
-            <h1 class="profile__author">Жак-Ив Кусто</h1>
-            <button class="profile__edit">
-              <img
-              src="images/edit-button.png"
-              alt="Карандаш"
-              class="profile__edit-button"
-            />
-            </button>
+            <div class="profile__author-edit">
+              <h1 class="profile__author">Жак-Ив Кусто</h1>
+              <button class="profile__edit profile__edit_opened">
+                <img
+                  src="images/edit-button.png"
+                  alt="Карандаш"
+                  class="profile__edit-button"
+                />
+              </button>
+            </div>
             <p class="profile__description">Исследователь океана</p>
           </div>
         </div>
-          <button class="profile__button">
-            <img
-              src="images/plus.png"
-              alt="Знак плюс"
-              class="profile__add-button"
-            />
-          </button>
+        <button class="profile__button">
+          <img
+            src="images/plus.png"
+            alt="Знак плюс"
+            class="profile__add-button"
+          />
+        </button>
       </section>
       <section class="cards">
         <div class="card">
@@ -47,7 +49,7 @@
           />
           <div class="card__caption-heart">
             <h3 class="card__caption">Карачаевск</h3>
-            <img src="images/heart.svg" alt="Лайк" class="card__heart card__heart_type_active" />
+            <img src="images/heart.svg" alt="Лайк" class="card__heart" />
           </div>
         </div>
         <div class="card">
@@ -86,7 +88,7 @@
           />
           <div class="card__caption-heart">
             <h3 class="card__caption">Карачаево-Черкесия</h3>
-            <img src="images/heart.svg" alt="Лайк" class="card__heart card__heart_type_active" />
+            <img src="images/heart.svg" alt="Лайк" class="card__heart" />
           </div>
         </div>
       </section>
@@ -94,17 +96,25 @@
     <footer class="footer">
       <p class="footer__copyright" lang="en">&#169; 2023 Mesto Russia</p>
     </footer>
-    <div class="popup">
+    <div class="popup popup_type_profile">
       <div class="popup__container">
         <button class="popup__close"></button>
         <h2 class="popup__title">Редактировать профиль</h2>
-        <form action="" method="get"  class="popup__texts">
-            <input type="text" name="name" id="name" class="popup__text" value="Жак-Ив Кусто">
-            <input type="text" name="description" id="name" class="popup__text" value="Исследователь океана">
+        <form class="popup__form">
+          <input
+            type="text"
+            class="popup__input popup__input_type_name"
+            value=""
+          />
+          <input
+            type="text"
+            class="popup__input popup__input_type_job"
+            value=""
+          />
+          <button class="popup__save">Сохранить</button>
         </form>
-        <button class="popup__save">Сохранить</button>
       </div>
     </div>
-    <script></script>
+    <script src="scripts/index.js"></script>
   </body>
 </html>
