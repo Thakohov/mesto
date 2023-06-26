@@ -18,3 +18,4 @@
 - Файловая структура проекта по правилам Nested БЭМ
 - Javascript
 ## Ссылка на проект
+https://thakohov.github.io/mesto/
