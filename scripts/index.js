@@ -1,4 +1,4 @@
-const popup = document.querySelector(".profile__edit_opened");
+const popup = document.querySelector(".profile__edit");
 const popupOpened = document.querySelector(".popup_type_profile");
 const buttonClose = popupOpened.querySelector(".popup__close");
 
@@ -11,8 +11,10 @@ let profileDescription = document.querySelector(".profile__description");
 
 function togglePopup() {
   popupOpened.classList.toggle("popup_opened");
-  nameInput.value = profileAuthor.textContent;
-  jobInput.value = profileDescription.textContent;
+  if (popupOpened.classList.contains("popup_opened")) {
+    nameInput.value = profileAuthor.textContent;
+    jobInput.value = profileDescription.textContent;
+  }
 }
 
 function handleFormSubmit(evt) {

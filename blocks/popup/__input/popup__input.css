@@ -4,7 +4,7 @@
   font-size: 14px;
   border-top: none;
   border-right: none;
-  border-bottom: 1px solid #000000;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
   border-left: none;
   padding-bottom: 13px;
   padding-top: 5px;

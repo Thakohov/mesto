@@ -3,7 +3,7 @@
   flex-direction: column;
   justify-content: flex-start;
   row-gap: 30px;
-  width: 358px;
+  max-width: 358px;
   margin: 0;
   padding: 0;
   border: none;
@@ -11,6 +11,6 @@
 
 @media screen and (max-width: 767px) {
   .popup__form {
-    width: 238px;
+    max-width: 238px;
   }
 }

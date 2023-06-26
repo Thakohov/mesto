@@ -8,7 +8,7 @@
   </head>
   <body class="page">
     <header class="header header_type_place">
-      <img src="images/logo.png" alt="Место" class="header__logo" />
+      <img src="images/logo-header.svg" alt="Место" class="header__logo" />
     </header>
     <main>
       <section class="profile">
@@ -21,9 +21,9 @@
           <div class="profile__info">
             <div class="profile__author-edit">
               <h1 class="profile__author">Жак-Ив Кусто</h1>
-              <button class="profile__edit profile__edit_opened">
+              <button class="profile__edit" type="button">
                 <img
-                  src="images/edit-button.png"
+                  src="images/edit-button.svg"
                   alt="Карандаш"
                   class="profile__edit-button"
                 />
@@ -32,9 +32,9 @@
             <p class="profile__description">Исследователь океана</p>
           </div>
         </div>
-        <button class="profile__button">
+        <button class="profile__button" type="button">
           <img
-            src="images/plus.png"
+            src="images/plus.svg"
             alt="Знак плюс"
             class="profile__add-button"
           />
@@ -42,42 +42,53 @@
       </section>
       <section class="cards">
         <div class="card">
-          <img
+            <img
             src="images/Карачаевск.png"
             alt="Карачаевск"
             class="card__image"
           />
+          </button>
           <div class="card__caption-heart">
             <h3 class="card__caption">Карачаевск</h3>
-            <img src="images/heart.svg" alt="Лайк" class="card__heart" />
+            <button type="button" class="card__button-heart">
+              <img src="images/heart.svg" alt="Лайк" class="card__heart" />
+            </button>
           </div>
         </div>
         <div class="card">
           <img src="images/Эльбрус.png" alt="Эльбрус" class="card__image" />
           <div class="card__caption-heart">
             <h3 class="card__caption">Эльбрус</h3>
-            <img src="images/heart.svg" alt="Лайк" class="card__heart" />
+            <button type="button" class="card__button-heart">
+              <img src="images/heart.svg" alt="Лайк" class="card__heart" />
+            </button>
           </div>
         </div>
         <div class="card">
           <img src="images/Домбай.png" alt="Домбай" class="card__image" />
           <div class="card__caption-heart">
             <h3 class="card__caption">Домбай</h3>
-            <img src="images/heart.svg" alt="Лайк" class="card__heart" />
+            <button type="button" class="card__button-heart">
+              <img src="images/heart.svg" alt="Лайк" class="card__heart" />
+            </button>
           </div>
         </div>
         <div class="card">
           <img src="images/Эльбрус.png" alt="Эльбрус" class="card__image" />
           <div class="card__caption-heart">
             <h3 class="card__caption">Эльбрус</h3>
-            <img src="images/heart.svg" alt="Лайк" class="card__heart" />
+            <button type="button" class="card__button-heart">
+              <img src="images/heart.svg" alt="Лайк" class="card__heart" />
+            </button>
           </div>
         </div>
         <div class="card">
           <img src="images/Домбай.png" alt="Домбай" class="card__image" />
           <div class="card__caption-heart">
             <h3 class="card__caption">Домбай</h3>
-            <img src="images/heart.svg" alt="Лайк" class="card__heart" />
+            <button type="button" class="card__button-heart">
+              <img src="images/heart.svg" alt="Лайк" class="card__heart" />
+            </button>
           </div>
         </div>
         <div class="card">
@@ -88,7 +99,9 @@
           />
           <div class="card__caption-heart">
             <h3 class="card__caption">Карачаево-Черкесия</h3>
-            <img src="images/heart.svg" alt="Лайк" class="card__heart" />
+            <button type="button" class="card__button-heart">
+              <img src="images/heart.svg" alt="Лайк" class="card__heart" />
+            </button>
           </div>
         </div>
       </section>
@@ -98,20 +111,18 @@
     </footer>
     <div class="popup popup_type_profile">
       <div class="popup__container">
-        <button class="popup__close"></button>
+        <button class="popup__close" type="button"></button>
         <h2 class="popup__title">Редактировать профиль</h2>
         <form class="popup__form">
           <input
             type="text"
             class="popup__input popup__input_type_name"
-            value=""
           />
           <input
             type="text"
             class="popup__input popup__input_type_job"
-            value=""
           />
-          <button class="popup__save">Сохранить</button>
+          <button class="popup__save" type="submit">Сохранить</button>
         </form>
       </div>
     </div>

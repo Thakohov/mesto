@@ -8,6 +8,5 @@
   .profile__avatar-info {
     flex-direction: column;
     row-gap: 26px;
-    align-items: center;
   }
 }
