@@ -41,68 +41,18 @@
         </button>
       </section>
       <section class="cards">
-        <div class="card">
-            <img
-              src="images/Карачаевск.png"
-              alt="Карачаевск"
-              class="card__image"
-            />
-          <div class="card__caption-heart">
-            <h3 class="card__caption">Карачаевск</h3>
-            <button type="button" class="card__button-heart">
-              <img src="images/heart.svg" alt="Лайк" class="card__heart" />
-            </button>
+        <template id="card">
+          <div class="card">
+            <button type="button" class="card__trash"></button>
+            <img src="" class="card__image" />
+            <div class="card__caption-heart">
+              <h3 class="card__caption"></h3>
+              <button type="button" class="card__button-heart">
+                <div class="card__heart"></div>
+              </button>
+            </div>
           </div>
-        </div>
-        <div class="card">
-          <img src="images/Эльбрус.png" alt="Эльбрус" class="card__image" />
-          <div class="card__caption-heart">
-            <h3 class="card__caption">Эльбрус</h3>
-            <button type="button" class="card__button-heart">
-              <img src="images/heart.svg" alt="Лайк" class="card__heart" />
-            </button>
-          </div>
-        </div>
-        <div class="card">
-          <img src="images/Домбай.png" alt="Домбай" class="card__image" />
-          <div class="card__caption-heart">
-            <h3 class="card__caption">Домбай</h3>
-            <button type="button" class="card__button-heart">
-              <img src="images/heart.svg" alt="Лайк" class="card__heart" />
-            </button>
-          </div>
-        </div>
-        <div class="card">
-          <img src="images/Эльбрус.png" alt="Эльбрус" class="card__image" />
-          <div class="card__caption-heart">
-            <h3 class="card__caption">Эльбрус</h3>
-            <button type="button" class="card__button-heart">
-              <img src="images/heart.svg" alt="Лайк" class="card__heart" />
-            </button>
-          </div>
-        </div>
-        <div class="card">
-          <img src="images/Домбай.png" alt="Домбай" class="card__image" />
-          <div class="card__caption-heart">
-            <h3 class="card__caption">Домбай</h3>
-            <button type="button" class="card__button-heart">
-              <img src="images/heart.svg" alt="Лайк" class="card__heart" />
-            </button>
-          </div>
-        </div>
-        <div class="card">
-          <img
-            src="images/Карачаевск.png"
-            alt="Карачаево-Черкесия"
-            class="card__image"
-          />
-          <div class="card__caption-heart">
-            <h3 class="card__caption">Карачаево-Черкесия</h3>
-            <button type="button" class="card__button-heart">
-              <img src="images/heart.svg" alt="Лайк" class="card__heart" />
-            </button>
-          </div>
-        </div>
+        </template>
       </section>
     </main>
     <footer class="footer">
@@ -119,6 +69,7 @@
         </form>
       </div>
     </div>
+    <script src="scripts/index2.js"></script>
     <script src="scripts/index.js"></script>
   </body>
 </html>

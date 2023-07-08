@@ -18,6 +18,7 @@
 @import url(../blocks/card/__button-heart/card__button-heart.css);
 @import url(../blocks/cards/cards.css);
 @import url(../blocks/card/card.css);
+@import url(../blocks/card/__trash/card__trash.css);
 @import url(../blocks/card/__image/card__image.css);
 @import url(../blocks/card/__caption-heart/card__caption-heart.css);
 @import url(../blocks/card/caption/card__caption.css);

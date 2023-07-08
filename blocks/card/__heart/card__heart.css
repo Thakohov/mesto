@@ -2,6 +2,9 @@
   width: 22px;
   height: 19px;
   transition: 1s;
+  background-image: url(../../../images/heart.svg);
+  background-color: transparent;
+  border: none;
 }
 
 .card__heart:hover {
