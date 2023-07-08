@@ -7,9 +7,17 @@ let formElement = document.querySelector(".popup__form");
 let nameInput = document.querySelector(".popup__input_type_name");
 let jobInput = document.querySelector(".popup__input_type_job");
 
-
 let profileAuthor = document.querySelector(".profile__author");
 let profileDescription = document.querySelector(".profile__description");
+
+const addButton = document.querySelector(".profile__add-button");
+const popupOpen =  document.querySelector(".popup_type_add-card");
+const ButtonClosed = popupOpen.querySelector(".popup__close");
+
+
+
+const placeInput = document.querySelector('.popup__input_type_place');
+const srcInput = document.querySelector('.popup__input_type_src');
 
 function togglePopup() {
   popupOpened.classList.toggle("popup_opened");
@@ -19,15 +27,28 @@ function togglePopup() {
   }
 }
 
+function openPopup() {
+  popupOpen.classList.add("popup_opened");
+}
+
+function closePopup() {
+  popupOpen.classList.remove("popup_opened");
+}
+
+
 function handleFormSubmit(evt) {
   evt.preventDefault();
   profileAuthor.textContent = nameInput.value;
   profileDescription.textContent = jobInput.value;
   togglePopup();
+  closePopup();
 }
+
 
 popup.addEventListener("click", togglePopup);
 buttonClose.addEventListener("click", togglePopup);
 
 formElement.addEventListener("submit", handleFormSubmit);
 
+addButton.addEventListener("click", openPopup);
+ButtonClosed.addEventListener("click", closePopup);
