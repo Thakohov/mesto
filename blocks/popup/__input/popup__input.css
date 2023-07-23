@@ -9,4 +9,15 @@
   padding-bottom: 13px;
   padding-top: 5px;
   margin: 0;
+  width: 350px;
+}
+
+.popup__input:focus {
+  outline: none;
+}
+
+@media screen and (max-width: 767px) {
+  .popup__input {
+    width: 235px;
+  }
 }
