@@ -36,23 +36,21 @@ const spanSrc = document.querySelector(".src-error");
 const buttonsaveProfile = document.querySelector(".popup__save_type_profile");
 const buttonsaveCard = document.querySelector(".popup__save_type_card");
 
-
-function closePopupEsc (popup) {
-  document.addEventListener("keydown", (evt) => {
-    if (evt.key === "Escape" && popup.classList.contains('popup_opened')) {
-      closePopup(popup);
-      document.removeEventListener("keydown", closePopupEsc(popup))
-    }
-  });
+function closePopupEsc(evt) {
+  if (evt.key === "Escape") {
+    const openedPopup = document.querySelector(".popup_opened");
+    closePopup(openedPopup);
+  }
 }
 
 function openPopup(popup) {
   popup.classList.add("popup_opened");
-  closePopupEsc(popup)
+  document.addEventListener("keydown", closePopupEsc);
 }
 
 function closePopup(popup) {
   popup.classList.remove("popup_opened");
+  document.removeEventListener("keydown", closePopupEsc);
 }
 
 const createCard = (initialCards) => {
@@ -97,8 +95,6 @@ const addNewCard = (evt) => {
   const newCard = createCard({ name: inputPlace.value, link: inputSrc.value });
   cardsList.prepend(newCard);
   closePopup(popupAddCard);
-  buttonsaveCard.disabled = true
-  buttonsaveCard.classList.add('popup__save_type_disabled')
 };
 
 function submitEditProfileForm(evt) {
@@ -106,22 +102,17 @@ function submitEditProfileForm(evt) {
   profileAuthor.textContent = nameInput.value;
   profileDescription.textContent = jobInput.value;
   closePopup(popupOpenedProfile);
-  buttonsaveProfile.disabled = true
-  buttonsaveProfile.classList.add('popup__save_type_disabled')
 }
 
 profileEditButton.addEventListener("click", () => {
-  hideInputError(popupOpenedProfile, nameInput);
-  hideInputError(popupOpenedProfile, jobInput);
   openPopup(popupOpenedProfile);
   nameInput.value = profileAuthor.textContent;
   jobInput.value = profileDescription.textContent;
+  resetValidation(popupProfileForm, validationConfig);
 });
 
 buttonCloseProfile.addEventListener("click", () => {
   closePopup(popupOpenedProfile);
-  buttonsaveProfile.disabled = true
-  buttonsaveProfile.classList.add('popup__save_type_disabled')
 });
 
 popupProfileForm.addEventListener("submit", submitEditProfileForm);
@@ -129,10 +120,9 @@ popupProfileForm.addEventListener("submit", submitEditProfileForm);
 popupCardForm.addEventListener("submit", addNewCard);
 
 addButton.addEventListener("click", () => {
-  hideInputError(popupAddCard, inputPlace);
-  hideInputError(popupAddCard, inputSrc);
   openPopup(popupAddCard);
   popupCardForm.reset();
+  resetValidation(popupCardForm, validationConfig);
 });
 
 buttonCloseCard.addEventListener("click", () => {
