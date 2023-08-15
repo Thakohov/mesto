@@ -33,6 +33,7 @@ class Card {
 
   _deleteCardButton() {
     this._card.remove();
+    this._card = null
   }
 
   _setEventListeners() {

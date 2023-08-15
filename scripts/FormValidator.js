@@ -1,14 +1,4 @@
-// включение валидации вызовом enableValidation
-// все настройки передаются при вызове
-
-const validationConfig = {
-  formSelector: ".popup__form",
-  inputSelector: ".popup__input",
-  submitButtonSelector: ".popup__save",
-  inactiveButtonClass: "popup__save_type_disabled",
-  inputErrorClass: "popup__input_type_error",
-  errorClass: "popup__error_visible",
-};
+import  { validationConfig } from './constants.js'
 
 class FormValidator {
   constructor(config, templateSelector) {
@@ -20,10 +10,12 @@ class FormValidator {
     this._inactiveButtonClass = config.inactiveButtonClass;
     this._inputErrorClass = config.inputErrorClass;
     this._errorClass = config.errorClass;
+    this.form = document.querySelector(this._templateSelector);
+    this._inputs = Array.from(this.form.querySelectorAll(this._inputSelector));
   }
 
   _showInputError(input) {
-    const span = document.querySelector(`.${input.id}-error`);
+    const span = this.form.querySelector(`.${input.id}-error`);
 
     input.classList.add(this._inputErrorClass);
     span.textContent = input.validationMessage;
@@ -31,7 +23,7 @@ class FormValidator {
   }
 
   _hideInputError(input) {
-    const span = document.querySelector(`.${input.id}-error`);
+    const span = this.form.querySelector(`.${input.id}-error`);
 
     input.classList.remove(this._inputErrorClass);
     span.textContent = "";
@@ -51,7 +43,7 @@ class FormValidator {
   }
 
   _toggleButtonState() {
-    this._button = this._form.querySelector(this._submitButtonSelector);
+    this._button = this.form.querySelector(this._submitButtonSelector);
     if (this._hasInvalidValue()) {
       this._button.classList.add(this._inactiveButtonClass);
       this._button.disabled = true;
@@ -62,9 +54,6 @@ class FormValidator {
   }
 
   _setEventListeners() {
-    this._form = document.querySelector(this._templateSelector);
-    this._inputs = Array.from(this._form.querySelectorAll(this._inputSelector));
-
     this._toggleButtonState();
 
     this._inputs.forEach((input) => {
@@ -75,11 +64,9 @@ class FormValidator {
     });
   }
 
-  _resetValidation() {
-    this._form = document.querySelector(this._templateSelector);
-    const inputs = Array.from(this._form.querySelectorAll(this._inputSelector));
+  resetValidation() {
     this._toggleButtonState();
-    inputs.forEach((input) => {
+    this._inputs.forEach((input) => {
       this._hideInputError(input);
     });
   }
