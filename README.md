@@ -29,4 +29,4 @@
 
 
 ## Ссылка на проект
-https://thakohov.github.io/mesto/s
+https://github.com/Thakohov/mesto.git
