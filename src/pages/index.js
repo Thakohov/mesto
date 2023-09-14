@@ -37,21 +37,19 @@ const popupTypeImage = document.querySelector(".popup_type_image");
 
 const cardsList = document.querySelector(".cards__list");
 
-function deleteConfirmOpen() {
-  popupConfirm.open();
+let userId;
+
+function deleteConfirmOpen(id) {
+  popupConfirm.open(id);
 }
 
-function handleCardDelete(id) {
-  api.deleteCard(id)
-  .then((res) => {
-    console.log(res);
-  })
-  .catch(error => {
-    console.log(error);
-  })
-}
+// function handleCardDelete(id) {
+//   api.deleteCard(id)
+//   .then(() => {
+//   })
+// }
 
-const popupConfirm = new PopupWithConfirmation(confirmPopup, handleCardDelete);
+const popupConfirm = new PopupWithConfirmation(confirmPopup);
 popupConfirm.setEventListeners();
 
 
@@ -66,12 +64,14 @@ const cardList = new Section(
   cardsList
 );
 
-api.getInitialCards()
-.then(data => {
-  data.forEach(card => {
-    const cardElement = generateCard(card);
-    cardList.addItem(cardElement);
-  })
+
+Promise.all([api.getInitialCards(), api.getUserInfo()])
+.then(([items, user]) => {
+    userId = user._id;
+    cardList.renderer(items);
+    profileFormEdit.getUserInfo(user);
+    profileAuthor.textContent = user.name;
+    profileDescription.textContent = user.about;
 })
 .catch(error => {
   console.log(error);
@@ -96,8 +96,7 @@ popupCardAdd.setEventListeners();
 
 function handleSubmitFormCard(data) {
   api.createCard(data)
-  .then(card => {
-    console.log(card);
+  .then((data) => {
     const cardElement = generateCard(data);
     cardList.addItemPrep(cardElement);
   })
@@ -144,17 +143,18 @@ profileEditButton.addEventListener("click", () => {
   profileFormValidation.resetValidation();
 });
 
-api.getUserInfo()
-.then(res => {
-  profileAuthor.textContent = res.name;
-  profileDescription.textContent = res.about
-})
-.catch(error => {
-  console.log(error);
-})
 
 const generateCard = (item) => {
-  const card = new Card(item, ".card-template_type_default", handleCardClick, deleteConfirmOpen, handleCardDelete)
+  const card = new Card(item,".card-template_type_default", handleCardClick, deleteConfirmOpen, popupConfirm.formSubmitCallback((id) => {
+    api.deleteCard(id)
+    .then(() => {
+      card.delete();
+      console.log(card.delete());
+    })
+    .catch(err => {
+      console.log(err);
+    })
+  }), userId)
   const cardElement = card.generateCard();
 
   return cardElement;
