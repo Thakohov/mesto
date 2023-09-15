@@ -74,7 +74,7 @@ class Api {
       });
   }
 
-  deleteCard (id) {
+  deleteCard(id) {
     return fetch(`${this._url}/cards/${id}`, {
       method: "DELETE",
       headers: this._headers,
@@ -89,18 +89,70 @@ class Api {
 
       .catch((error) => {
         console.log(`Ошибка: ${error}`);
+      });
+  }
+
+  setLikes(cardId) {
+    return fetch(`${this._url}/cards/${cardId}/likes`, {
+      method: "PUT",
+      headers: this._headers,
+    })
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        }
+
+        return Promise.reject(`Ошибка: ${res.status}`);
       })
+
+      .catch((error) => {
+        console.log(`Ошибка: ${error}`);
+      });
+  }
+
+  deleteLikes(cardId) {
+    return fetch(`${this._url}/cards/${cardId}/likes`, {
+      method: "DELETE",
+      headers: this._headers,
+    })
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        }
+
+        return Promise.reject(`Ошибка: ${res.status}`);
+      })
+
+      .catch((error) => {
+        console.log(`Ошибка: ${error}`);
+      });
+  }
+
+  setAvatar(data) {
+    return fetch(`${this._url}/users/me/avatar`, {
+      method: "PATCH",
+      headers: this._headers,
+      body: JSON.stringify({ avatar: data.avatar }),
+    })
+      .then((res) => {
+        if (res.ok) {
+          return res.json({ avatar: data.avatar });
+        }
+      })
+      .catch((error) => {
+        console.log(`Ошибка: ${error}`);
+      });
   }
 }
 
 const optionsApi = {
   url: "https://mesto.nomoreparties.co/v1/cohort-75",
   headers: {
-    authorization: 'a2e53856-d081-4f31-b654-cd6028925996',
-    "Content-Type": "application/json"
-  }
-}
+    authorization: "a2e53856-d081-4f31-b654-cd6028925996",
+    "Content-Type": "application/json",
+  },
+};
 
-const api = new Api(optionsApi)
+const api = new Api(optionsApi);
 
 export default api;

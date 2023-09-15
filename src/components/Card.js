@@ -1,5 +1,14 @@
 class Card {
-  constructor(data, templateSelector, handleCardClick, deleteConfirmOpen, handleDelete, userId) {
+  constructor(
+    data,
+    templateSelector,
+    handleCardClick,
+    handleLikeClick,
+    handleLikeClickDelete,
+    deleteConfirmOpen,
+    handleDelete,
+    userId
+  ) {
     this._name = data.name;
     this._link = data.link;
     this._alt = data.name;
@@ -10,7 +19,9 @@ class Card {
     this._userId = userId;
     this._handleDelete = handleDelete;
     this._deleteConfirmOpen = deleteConfirmOpen;
-    // this._likes = data.likes.length;
+    this._handleLikeClick = handleLikeClick;
+    this._handleLikeClickDelete = handleLikeClickDelete;
+    this._likes = data.likes;
   }
 
   _setData() {
@@ -24,9 +35,20 @@ class Card {
       this._deleteButton.remove();
     }
 
+    this._likeCount.textContent = this._likes.length;
     this._cardImage.src = this._link;
     this._cardImage.alt = this._alt;
     this._cardCaption.textContent = this._name;
+  }
+
+  _likeButtonIsChecked() {
+    if (
+      this._likes.some((user) => {
+        return this._userId === user._id;
+      })
+    ) {
+      this._likeButton.classList.add("card__heart_type_active");
+    }
   }
 
   _getTemplate() {
@@ -38,41 +60,45 @@ class Card {
     return cardTemplate;
   }
 
-  _toggleLikeButton() {
-    this._likeButton.classList.toggle("card__heart_type_active");
+  addLikeButton(data) {
+    this._likeButton.classList.add("card__heart_type_active");
+    this._likes = data.likes;
+    this._likeCount.textContent = this._likes.length;
   }
 
-  // _likeButtonChecked() {
-
-  // }
-
-  // _likeButtonCount() {
-  //   this._likeCount.textContent = this._likes;
-  // }
+  removeLikeButton(data) {
+    this._likeButton.classList.remove("card__heart_type_active");
+    this._likes = data.likes;
+    this._likeCount.textContent = this._likes.length;
+  }
 
   _deleteCardButton() {
-    this._handleDelete(this._id);
+    this._handleDelete(this);
   }
 
   _setEventListeners() {
     this._likeButton.addEventListener("click", () => {
-      this._toggleLikeButton();
-      // this._likeButtonCount();
+      if (this._likeButton.classList.contains("card__heart_type_active")) {
+        this._handleLikeClickDelete(this._id);
+      } else {
+        this._handleLikeClick(this._id);
+      }
     });
 
-
     this._deleteButton.addEventListener("click", () => {
+      this._deleteCardButton();
       this._deleteConfirmOpen(this._id);
     });
 
-    this._cardImage.addEventListener('click', () => {
+    this._cardImage.addEventListener("click", () => {
       this._handleCardClick(this._link, this._name);
-    })
+    });
   }
 
   generateCard() {
     this._card = this._getTemplate();
     this._setData();
+    this._likeButtonIsChecked();
     this._setEventListeners();
     return this._card;
   }

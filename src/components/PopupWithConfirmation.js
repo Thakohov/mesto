@@ -5,7 +5,6 @@ class PopupWithConfirmation extends Popup {
     super(popup);
     this._form = this.popup.querySelector(".popup__form");
     this.submitButton = this._form.querySelector(".popup__save");
-    // this._formSubmit = formSubmit;
   }
 
   open(id) {
@@ -14,7 +13,7 @@ class PopupWithConfirmation extends Popup {
   }
 
   formSubmitCallback(id) {
-    this._formSubmit = id
+    this._formSubmit = id;
   }
 
   setEventListeners() {
