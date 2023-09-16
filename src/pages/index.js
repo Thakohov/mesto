@@ -47,7 +47,7 @@ let userId;
 
 const cardList = new Section(
   {
-    renderer: (data) => {
+    renderItems: (data) => {
       const cardElement = generateCard(data);
       cardList.addItem(cardElement);
     },
@@ -60,11 +60,8 @@ const cardList = new Section(
 Promise.all([api.getInitialCards(), api.getUserInfo()])
   .then(([items, user]) => {
     userId = user._id;
-    cardList.renderer(items);
-    profileFormEdit.getUserInfo(user);
-    profileAuthor.textContent = user.name;
-    profileDescription.textContent = user.about;
-    avatar.src = user.avatar;
+    cardList.renderItems(items);
+    userInfo.setUserInfo(user);
   })
   .catch((error) => {
     console.log(error);
@@ -78,7 +75,7 @@ imagePopup.setEventListeners();
 const popupConfirm = new PopupWithConfirmation(confirmPopup);
 popupConfirm.setEventListeners();
 
-const profileFormEdit = new UserInfo({
+const userInfo = new UserInfo({
   userName: profileAuthor,
   userJob: profileDescription,
   avatar: avatar,
@@ -103,10 +100,16 @@ popupProfileForm.setEventListeners();
 const cardFormValidation = new FormValidator(config, ".popup_type_add-card");
 cardFormValidation.enableValidation();
 
-const profileFormValidation = new FormValidator( config, ".popup__form_type_profile");
+const profileFormValidation = new FormValidator(
+  config,
+  ".popup__form_type_profile"
+);
 profileFormValidation.enableValidation();
 
-const avatarFormValidation = new FormValidator(config, ".popup__form_type_avatar");
+const avatarFormValidation = new FormValidator(
+  config,
+  ".popup__form_type_avatar"
+);
 avatarFormValidation.enableValidation();
 
 /*------- Создание функций для полей форм -------*/
@@ -118,6 +121,9 @@ function handleSubmitFormCard(data) {
     .then((data) => {
       const cardElement = generateCard(data);
       cardList.addItemPrep(cardElement);
+    })
+    .then(() => {
+      popupCardAdd.close();
     })
     .catch((err) => {
       console.log(err);
@@ -134,6 +140,9 @@ function handleSubmitFormAvatar(data) {
     .then((data) => {
       avatar.src = data.avatar;
     })
+    .then(() => {
+      popupAvatar.close();
+    })
     .catch((err) => {
       console.log(err);
     })
@@ -147,8 +156,10 @@ function handleSubmitFormProfile(data) {
   api
     .setUserInfo(data)
     .then((data) => {
-      profileAuthor.textContent = data.name;
-      profileDescription.textContent = data.about;
+      userInfo.setUserInfo(data);
+    })
+    .then(() => {
+      popupProfileForm.close();
     })
     .catch((err) => {
       console.log(err);
@@ -172,8 +183,6 @@ function handleCardClick(name, link) {
 
 avatarEditBtn.addEventListener("click", () => {
   popupAvatar.open();
-  const avatarValue = profileFormEdit.getUserInfo();
-  avatarInput.value = avatarValue.avatar;
   avatarFormValidation.resetValidation();
 });
 
@@ -184,7 +193,7 @@ addButton.addEventListener("click", () => {
 
 profileEditButton.addEventListener("click", () => {
   popupProfileForm.open();
-  const profileFormValues = profileFormEdit.getUserInfo();
+  const profileFormValues = userInfo.getUserInfo();
 
   nameInput.value = profileFormValues.name;
   jobInput.value = profileFormValues.job;
@@ -226,6 +235,9 @@ const generateCard = (item) => {
           .deleteCard(id)
           .then(() => {
             card.delete();
+          })
+          .then(() => {
+            popupConfirm.close();
           })
           .catch((err) => {
             console.log(err);
